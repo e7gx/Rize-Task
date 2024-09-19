@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     super.initState();
-    Future.delayed( Duration(seconds: 4), () {
+    Future.delayed( const Duration(seconds: 4), () {
       context.pushReplacementNamed('/onboarding');
     });
   }

@@ -11,7 +11,7 @@ class RizeLogoAndName extends StatelessWidget {
       children: [
         Image.asset(
           'assets/images/logo.png',
-          width: 200.h,
+          width: 150.w,
         ),
       ],
     );

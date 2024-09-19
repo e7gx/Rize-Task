@@ -21,18 +21,6 @@ class _MainPageState extends State<AiChatPage> {
   final List<Message> _messages = [];
   final String _firstName = 'Abdullah';
 
-  Future<double> fetchDepositedAmount() async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:8000/api/amount/'));
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      return double.parse(data['total_amount'] as String);
-    } else {
-      throw Exception('Failed to load deposited amount');
-    }
-  }
-
   Future<void> _saveChatHistory() async {
     List<String> messages = _messages
         .map((message) => json.encode({
@@ -47,6 +35,23 @@ class _MainPageState extends State<AiChatPage> {
   final TextEditingController _textEditingController = TextEditingController();
 
   bool _userSentMessage = false;
+
+  @override
+  void initState() {
+    super.initState();
+    SharedPreferencesService.getChatHistory().then((messages) {
+      setState(() {
+        _messages.clear();
+        _messages.addAll(messages.map((message) {
+          Map<String, dynamic> parsedMessage = json.decode(message);
+          return Message(
+            text: parsedMessage['text'],
+            isMe: parsedMessage['isMe'],
+          );
+        }).toList());
+      });
+    });
+  }
 
   void onSendMessage() {
     String trimmedText = _textEditingController.text.trim();
@@ -176,9 +181,9 @@ class _MainPageState extends State<AiChatPage> {
               child: message.isMe
                   ? SelectableText(
                       message.text,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.black,
-                        fontSize: 15,
+                        fontSize: 15.sp,
                         fontFamily: 'Cairo',
                         fontWeight: FontWeight.normal,
                       ),
@@ -205,7 +210,7 @@ class _MainPageState extends State<AiChatPage> {
                           message.text,
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15.sp,
+                            fontSize: 12.sp,
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.normal,
                           ),
@@ -276,7 +281,8 @@ class _MainPageState extends State<AiChatPage> {
                         ),
                         controller: _textEditingController,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(20.w),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 8.w, vertical: 10.h),
                           hintText: "Say Hi $_firstName ...",
                           border: InputBorder.none,
                         ),

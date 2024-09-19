@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:rize/controller/helpers/alerts/snackbar.dart';
 import 'package:rize/controller/theme/colors.dart';
 import 'package:rize/controller/theme/styles.dart';
 import 'package:rize/view/screens/jobs/widgets/text_form_field.dart';
@@ -33,48 +34,25 @@ class _AddJobScreenState extends State<AddJobScreen> {
         'id': DateTime.now().toString(),
       };
 
-      // Fetch stored jobs
+      //! Fetch stored jobs
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? jobsString = prefs.getString('jobs');
       List<dynamic> jobs = jobsString != null ? json.decode(jobsString) : [];
 
-      // Add the new job
+      //! Add the new job
       jobs.add(jobData);
 
-      // Save updated job list
+      //! Save updated job list
       await prefs.setString('jobs', json.encode(jobs));
 
-      // Show success message
+      //! Clear the text fields
+      _titleController.clear();
+      _descriptionController.clear();
+      _companyController.clear();
+      _locationController.clear();
+
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Lottie.asset(
-                  'assets/animation/like1.json',
-                  width: 50.h,
-                  height: 50.h,
-                ),
-                Text(
-                  'Job posted successfully!',
-                  textAlign: TextAlign.center,
-                  style: TextStyles.font16WhiteWeight700.copyWith(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            margin: const EdgeInsets.all(10.0),
-            duration: const Duration(seconds: 3),
-          ),
-        );
+        showSuccessNotification(context, 'Job posted successfully!');
       }
     }
   }

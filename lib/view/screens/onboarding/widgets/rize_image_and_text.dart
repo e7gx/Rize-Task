@@ -12,7 +12,8 @@ class RizeImageAndText extends StatelessWidget {
       children: [
         Image.asset(
           'assets/images/logo.png',
-          width: 500.h,
+          width: 1000.w,
+          height: 500.h,
           color: Colors.white.withOpacity(0.5),
           colorBlendMode: BlendMode.dstIn,
         ),
@@ -30,16 +31,16 @@ class RizeImageAndText extends StatelessWidget {
           ),
           child: Image.asset(
             'assets/images/job.png',
-            width: 400,
-            height: 400,
+            width: 5000.w,
+            height: 400.h,
           ),
         ),
         Positioned(
-          bottom: 0,
+          bottom: 15,
           left: 0,
           right: 0,
           child: Text(
-            'Rize Jobs\nFind Jobs Easily',
+            'Rize App\nFind Jobs Easily',
             textAlign: TextAlign.center,
             style: TextStyles.font32BlueBold.copyWith(
               height: 1.4,

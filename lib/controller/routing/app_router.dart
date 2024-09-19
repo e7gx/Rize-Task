@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rize/controller/routing/routes.dart';
 import 'package:rize/view/screens/jobs/add_job_screen.dart';
 import 'package:rize/view/screens/jobs/home.dart';
-import 'package:rize/view/screens/jobs/job_detail_screen.dart';
+import 'package:rize/view/screens/jobs/job_delete_screen.dart';
 import 'package:rize/view/screens/jobs/job_list_screen.dart';
 import 'package:rize/view/screens/jobs/search_job_screen.dart';
 import 'package:rize/view/screens/onboarding/onboarding_screen.dart';

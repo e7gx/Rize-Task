@@ -1,13 +1,12 @@
-// view/screens/jobs/job_list_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:rize/controller/helpers/jobs/job_uilts.dart';
+import 'package:rize/controller/theme/colors.dart';
 import 'package:rize/controller/theme/styles.dart';
 import 'package:rize/model/jobs_model.dart';
 import 'package:rize/view/screens/jobs/widgets/job_card.dart';
 import 'package:rize/view/screens/onboarding/widgets/stackui.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
 class JobListScreen extends StatefulWidget {
   const JobListScreen({super.key});
@@ -23,20 +22,16 @@ class _JobListScreenState extends State<JobListScreen> {
   @override
   void initState() {
     super.initState();
-    loadJobs();
+    loadListofJobs();
   }
 
-  Future<void> loadJobs() async {
+  Future<void> loadListofJobs() async {
     setState(() {
       _isLoading = true;
     });
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? jobsString = prefs.getString('jobs');
-    List<dynamic> jobsList = jobsString != null ? json.decode(jobsString) : [];
-
+    _jobs = await loadJobs();
     setState(() {
-      _jobs = jobsList.map((jobData) => Job.fromJson(jobData)).toList();
       _isLoading = false;
     });
   }
@@ -45,41 +40,67 @@ class _JobListScreenState extends State<JobListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _isLoading
-          ? Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Lottie.asset(
-                    'assets/animation/Search.json',
-                    width: 300.w,
-                    height: 300.h,
-                  ),
-                  Text(
-                    'Loading jobs...',
-                    style: TextStyles.font28BlueBold,
-                  ),
-                ],
+          ? SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.asset(
+                      'assets/animation/Search.json',
+                      width: 300.w,
+                      height: 300.h,
+                    ),
+                    SizedBox(height: 20.h),
+                    Text(
+                      'Loading jobs...',
+                      style: TextStyles.font28BlueBold,
+                    ),
+                  ],
+                ),
               ),
             )
-          : RefreshIndicator(
-              onRefresh: loadJobs,
-              child: Stack(
-                children: [
-                  stackBacground(),
-                  ListView.builder(
-                    padding: EdgeInsets.all(0.w),
-                    itemCount: _jobs.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: JobCard(job: _jobs[index]),
-                      );
-                    },
+          : _jobs.isEmpty
+              ? SingleChildScrollView(
+                  child: Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Lottie.asset(
+                          'assets/animation/x.json',
+                          width: 300.w,
+                          height: 300.h,
+                        ),
+                        SizedBox(height: 20.h),
+                        Text(
+                          'No jobs available',
+                          style: TextStyles.font28BlueBold,
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
+                )
+              : RefreshIndicator(
+                  backgroundColor: ColorsManager.mainBlue,
+                  color: Colors.white,
+                  onRefresh: loadListofJobs,
+                  child: Stack(
+                    children: [
+                      stackBacground(),
+                      ListView.builder(
+                        padding: EdgeInsets.all(0.w),
+                        itemCount: _jobs.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.all(12.h),
+                            child: JobCard(job: _jobs[index]),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+import 'package:rize/controller/helpers/alerts/snackbar.dart';
 import 'package:rize/controller/helpers/extentions.dart';
 import 'package:rize/controller/theme/styles.dart';
 import 'package:rize/model/jobs_model.dart';
@@ -57,7 +58,6 @@ class JobCard extends StatelessWidget {
                 ],
               ),
             ),
-            
             Container(
               width: double.infinity,
               height: 200.h,
@@ -163,7 +163,7 @@ class JobCard extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   Text(
-                    'Position: ${job.title.toUpperCase()}',
+                    'Position:\n${job.title.toUpperCase()}',
                     style: TextStyles.font22DarkBlueWeight700,
                   ),
                   SizedBox(height: 8.h),
@@ -217,6 +217,8 @@ class JobCard extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       context.pop();
+                      showSuccessNotification(
+                          context, "Thank you for applying to ${job.company}");
                     },
                     style: ButtonStyle(
                       padding: WidgetStateProperty.all(EdgeInsets.symmetric(
