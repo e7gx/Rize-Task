@@ -3,17 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rize/controller/theme/colors.dart';
 
 class TextStyles {
-  // Basic Text Styles
-  static TextStyle font24BlackWeight700 = TextStyle(
-    fontSize: 24.sp,
-    fontWeight: FontWeight.w700,
-    color: Colors.black,
-  );
-
   static TextStyle font32BlueBold = TextStyle(
     fontSize: 32.sp,
     fontWeight: FontWeight.w700,
     color: ColorsManager.mainBlue,
+  );
+
+  static TextStyle font24BlackWeight700 = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
   );
 
   static TextStyle font13GrayRegular = TextStyle(
@@ -28,7 +27,6 @@ class TextStyles {
     color: ColorsManager.white,
   );
 
-  // Additional Blue Color Styles
   static TextStyle font20BlueWeight600 = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w600,
@@ -53,7 +51,6 @@ class TextStyles {
     color: ColorsManager.blueAccent,
   );
 
-  // Headings with Blue Color Variations
   static TextStyle font28BlueBold = TextStyle(
     fontSize: 28.sp,
     fontWeight: FontWeight.bold,
@@ -79,15 +76,16 @@ class TextStyles {
     color: ColorsManager.mainBlue,
   );
 
-  static TextStyle font14BlueWeight500 = TextStyle(
+  static TextStyle font14Bluebold = TextStyle(
     fontSize: 14.sp,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
     color: ColorsManager.mainBlue,
   );
-  
+
   static TextStyle font12BlueGrayWeight400 = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,
     color: ColorsManager.blueGray,
   );
+
 }

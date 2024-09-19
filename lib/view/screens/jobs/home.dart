@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rize/chat/chat.dart';
+import 'package:rize/view/screens/jobs/add_job_screen.dart';
 
 import 'package:rize/view/screens/jobs/job_detail_screen.dart';
 import 'package:rize/view/screens/jobs/job_list_screen.dart';
@@ -19,17 +21,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Define the different pages for each tab
     final List<Widget> pages = [
+      const AddJobScreen(),
       const JobListScreen(),
-      const JobListScreen(),
-      const JobDetailScreen(),
+      const JobDeleteScreen(),
       const SearchJobScreen(),
+      const AiChatPage(),
     ];
 
     return Scaffold(
       appBar: buildAppBar(firstName),
-
       body: pages[selectedIndex],
       bottomNavigationBar: buildBottomNavigationBar(selectedIndex, onTabChange),
     );

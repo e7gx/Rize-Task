@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rize/controller/theme/styles.dart';
 
-class DoctorImageAndText extends StatelessWidget {
-  const DoctorImageAndText({super.key});
+class RizeImageAndText extends StatelessWidget {
+  const RizeImageAndText({super.key});
 
   @override
   Widget build(BuildContext context) {

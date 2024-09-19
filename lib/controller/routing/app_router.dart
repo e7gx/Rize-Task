@@ -1,4 +1,3 @@
-// File: lib/controller/routing/app_router.dart
 
 import 'package:flutter/material.dart';
 import 'package:rize/controller/routing/routes.dart';
@@ -22,7 +21,7 @@ class AppRouter {
       case Routes.addJobScreen:
         return MaterialPageRoute(builder: (_) => const AddJobScreen());
       case Routes.jobDetailScreen:
-        return MaterialPageRoute(builder: (_) => const JobDetailScreen());
+        return MaterialPageRoute(builder: (_) => const JobDeleteScreen());
       case Routes.searchJobScreen:
         return MaterialPageRoute(builder: (_) => const SearchJobScreen());
       case Routes.homeScreen:

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 AppBar buildAppBar(String? firstName) {
   return AppBar(
-    backgroundColor: Colors.transparent,
+    backgroundColor: Colors.white,
     elevation: 0,
+    automaticallyImplyLeading: false,
     title: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,

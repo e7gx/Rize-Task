@@ -23,7 +23,7 @@ class OnboardingScreen extends StatelessWidget {
               children: [
                 const RizeLogoAndName(),
                 SizedBox(height: 15.h),
-                const DoctorImageAndText(),
+                const RizeImageAndText(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Column(
