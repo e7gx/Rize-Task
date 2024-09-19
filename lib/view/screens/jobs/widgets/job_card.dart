@@ -210,7 +210,7 @@ class JobCard extends StatelessWidget {
                   ),
                   Text(
                     'Posted at: ${_formatDate(job.id)}',
-                    style: TextStyles.font16BlueRegular,
+                    style: TextStyles.font13GrayRegular,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 22.h),

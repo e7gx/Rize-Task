@@ -20,7 +20,7 @@ void showSuccessNotification(BuildContext context, String message) {
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -45,9 +45,9 @@ void showDeleteAlert(BuildContext context, String message) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Lottie.asset(
-            'assets/animation/WOR.json',
-            width: 30.w,
-            height: 30.h,
+            'assets/animation/like1.json',
+            width: 50.w,
+            height: 50.h,
           ),
           Expanded(
             child: Text(

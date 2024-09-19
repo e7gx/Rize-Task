@@ -37,8 +37,11 @@ class CardFb2 extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Image.asset('assets/images/job.png',
-                  height: 59.h, fit: BoxFit.cover),
+              Image.asset(
+                'assets/images/job.png',
+                height: 59.h,
+                fit: BoxFit.cover,
+              ),
               SizedBox(
                 width: 15.w,
               ),

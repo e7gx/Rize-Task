@@ -10,7 +10,7 @@ AppBar buildAppBar(String? firstName) {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const CircleAvatar(
-          backgroundImage: AssetImage('assets/images/test.png'),
+          backgroundImage: AssetImage('assets/images/about.jpg'),
           radius: 22,
           backgroundColor: Colors.transparent,
         ),

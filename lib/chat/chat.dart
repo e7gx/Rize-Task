@@ -150,7 +150,7 @@ class _MainPageState extends State<AiChatPage> {
 
   Widget _buildMessage(Message message, bool isLatestMessage) {
     String imagePath =
-        message.isMe ? 'assets/images/test.png' : 'assets/images/ai.png';
+        message.isMe ? 'assets/images/about.jpg' : 'assets/images/ai.png';
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
@@ -168,22 +168,14 @@ class _MainPageState extends State<AiChatPage> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: ColorsManager.mainBlue.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
               ),
-              padding: const EdgeInsets.all(15),
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
               child: message.isMe
                   ? SelectableText(
                       message.text,
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 15.sp,
+                        fontSize: 13.sp,
                         fontFamily: 'Cairo',
                         fontWeight: FontWeight.normal,
                       ),
@@ -199,7 +191,7 @@ class _MainPageState extends State<AiChatPage> {
                               value.text,
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 14.sp,
+                                fontSize: 13.sp,
                                 fontFamily: 'Cairo',
                                 fontWeight: FontWeight.normal,
                               ),
@@ -233,14 +225,14 @@ class _MainPageState extends State<AiChatPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color(0xFFFFFFFF),
-                ColorsManager.mainBlue.withOpacity(0.1),
+                Color(0xFFFFFFFF),
+                Color(0xFF5193FC),
               ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
           ),
           child: Column(
@@ -325,7 +317,7 @@ class _MainPageState extends State<AiChatPage> {
       return Container(
         padding: EdgeInsets.all(5.h),
         decoration: BoxDecoration(
-          color: ColorsManager.mainBlue,
+          color: ColorsManager.white,
           border: Border.all(color: ColorsManager.darkBlue),
         ),
         child: Row(
@@ -335,10 +327,7 @@ class _MainPageState extends State<AiChatPage> {
               child: Text(
                 "Hello $_firstName, I'm here to help you. You can ask me anything about Rize App.",
                 textAlign: TextAlign.center,
-                style: TextStyles.font16WhiteWeight700.copyWith(
-                    color: Colors.white,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold),
+                style: TextStyles.font14Bluebold,
               ),
             ),
             Lottie.asset(

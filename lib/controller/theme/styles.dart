@@ -7,6 +7,7 @@ class TextStyles {
     fontSize: 32.sp,
     fontWeight: FontWeight.w700,
     color: ColorsManager.mainBlue,
+    fontFamily: 'Cairo',
   );
 
   static TextStyle font24BlackWeight700 = TextStyle(
@@ -87,5 +88,4 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: ColorsManager.blueGray,
   );
-
 }

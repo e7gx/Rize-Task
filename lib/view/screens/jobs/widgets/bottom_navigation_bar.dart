@@ -20,15 +20,15 @@ Container buildBottomNavigationBar(selectedIndex, onTabChange) {
         onTabChange: onTabChange,
         tabs: [
           GButton(
-            icon: Icons.post_add,
-            text: 'Post Job',
+            icon: Icons.work,
+            text: 'Jobs',
             iconColor: Colors.white,
             iconActiveColor: ColorsManager.mainBlue,
             textStyle: TextStyles.font14Bluebold,
           ),
           GButton(
-            icon: Icons.work,
-            text: 'Jobs',
+            icon: Icons.post_add,
+            text: 'Post Job',
             iconColor: Colors.white,
             iconActiveColor: ColorsManager.mainBlue,
             textStyle: TextStyles.font14Bluebold,

@@ -8,7 +8,7 @@ import 'package:rize/controller/theme/colors.dart';
 import 'package:rize/controller/theme/styles.dart';
 import 'package:rize/model/jobs_model.dart';
 import 'package:intl/intl.dart';
-import 'package:rize/view/screens/jobs/widgets/jobs_card.dart';
+import 'package:rize/view/screens/jobs/widgets/custom_jobs_card.dart';
 
 class JobDeleteScreen extends StatefulWidget {
   const JobDeleteScreen({super.key});
@@ -78,7 +78,9 @@ class _JobDeleteScreenState extends State<JobDeleteScreen> {
                       SizedBox(height: 8.h),
                       Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 8.h),
+                          horizontal: 16.w,
+                          vertical: 8.h,
+                        ),
                         decoration: BoxDecoration(
                           color: ColorsManager.lightBlue,
                           borderRadius: BorderRadius.circular(8),
@@ -119,7 +121,7 @@ class _JobDeleteScreenState extends State<JobDeleteScreen> {
                       ),
                       Text(
                         'Posted at: ${formatDate(job.id)}',
-                        style: TextStyles.font16BlueRegular,
+                        style: TextStyles.font13GrayRegular,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: 22.h),

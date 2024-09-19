@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:readmore/readmore.dart';
 import 'package:rize/controller/helpers/alerts/snackbar.dart';
+import 'package:rize/controller/helpers/extentions.dart';
 import 'package:rize/controller/theme/colors.dart';
 import 'package:rize/controller/theme/styles.dart';
-import 'package:rize/view/screens/jobs/widgets/jobs_card.dart';
+import 'package:rize/view/screens/jobs/widgets/custom_jobs_card.dart';
 import 'package:rize/view/screens/jobs/widgets/search_for_job.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
@@ -32,14 +34,22 @@ class SearchJobScreenState extends State<SearchJobScreen> {
   }
 
   Future<void> _loadJobs() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? jobsString = prefs.getString('jobs');
-    if (jobsString != null) {
-      List<dynamic> jobsList = json.decode(jobsString);
-      setState(() {
-        _jobs = List<Map<String, dynamic>>.from(jobsList);
-        _filteredJobs = _jobs;
-      });
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? jobsString = prefs.getString('jobs');
+      if (jobsString != null) {
+        List<dynamic> jobsList = json.decode(jobsString);
+        setState(() {
+          _jobs = List<Map<String, dynamic>>.from(jobsList.map((job) {
+            return job is Map<String, dynamic> ? job : json.decode(job);
+          }));
+          _filteredJobs = _jobs; // Initialize filtered jobs with all jobs
+        });
+      } else {
+        // print("No jobs found in SharedPreferences.");
+      }
+    } catch (e) {
+      // print("Error loading jobs: $e");
     }
   }
 
@@ -68,7 +78,26 @@ class SearchJobScreenState extends State<SearchJobScreen> {
           ),
           Expanded(
             child: _filteredJobs.isEmpty
-                ? const Center(child: Text('No jobs found'))
+                ? Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Lottie.asset(
+                            'assets/animation/x.json',
+                            width: 300.w,
+                            height: 300.h,
+                          ),
+                          SizedBox(height: 20.h),
+                          Text(
+                            'No jobs by this name',
+                            style: TextStyles.font28BlueBold,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
                 : ListView.builder(
                     itemCount: _filteredJobs.length,
                     itemBuilder: (context, index) {
@@ -116,7 +145,7 @@ class SearchJobScreenState extends State<SearchJobScreen> {
                           color: ColorsManager.mainBlue,
                         ),
                         onPressed: () {
-                          Navigator.pop(context);
+                          context.pop();
                         },
                       ),
                     ],
@@ -180,7 +209,7 @@ class SearchJobScreenState extends State<SearchJobScreen> {
                   ),
                   Text(
                     'Posted at: ${_formatDate(job['id'])}',
-                    style: TextStyles.font16BlueRegular,
+                    style: TextStyles.font13GrayRegular,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 22.h),
