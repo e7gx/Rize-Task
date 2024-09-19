@@ -57,6 +57,7 @@ class JobCard extends StatelessWidget {
                 ],
               ),
             ),
+            
             Container(
               width: double.infinity,
               height: 200.h,
