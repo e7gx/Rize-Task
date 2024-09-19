@@ -128,16 +128,37 @@ const List<String> citys = <String>[
 ];
 
 class DropdownMenuForm extends StatefulWidget {
+  final String selectedValue; // Add this parameter
   final ValueChanged<String> onSelected;
 
-  const DropdownMenuForm({super.key, required this.onSelected});
+  const DropdownMenuForm({
+    super.key,
+    required this.selectedValue,
+    required this.onSelected,
+  });
 
   @override
   State<DropdownMenuForm> createState() => _DropdownMenuFormState();
 }
 
 class _DropdownMenuFormState extends State<DropdownMenuForm> {
-  String dropdownValue = citys.first;
+  late String dropdownValue;
+
+  @override
+  void initState() {
+    super.initState();
+    dropdownValue = widget.selectedValue;
+  }
+
+  @override
+  void didUpdateWidget(covariant DropdownMenuForm oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.selectedValue != oldWidget.selectedValue) {
+      setState(() {
+        dropdownValue = widget.selectedValue;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,9 +202,9 @@ class _DropdownMenuFormState extends State<DropdownMenuForm> {
           color: Colors.transparent,
         ),
         onChanged: (String? newValue) {
-          if (newValue != citys.first) {
+          if (newValue != null && newValue != dropdownValue) {
             setState(() {
-              dropdownValue = newValue!;
+              dropdownValue = newValue;
               widget.onSelected(newValue);
             });
           }

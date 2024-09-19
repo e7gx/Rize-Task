@@ -20,7 +20,6 @@ class _AddJobScreenState extends State<AddJobScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _companyController = TextEditingController();
-  final TextEditingController _locationController = TextEditingController();
 
   String dropdownValueForm = citys.first;
 
@@ -30,26 +29,24 @@ class _AddJobScreenState extends State<AddJobScreen> {
         'title': _titleController.text,
         'description': _descriptionController.text,
         'company': _companyController.text,
-        'location': _locationController.text,
+        'location': dropdownValueForm, // Use dropdownValueForm here
         'id': DateTime.now().toString(),
       };
 
-      //! Fetch stored jobs
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? jobsString = prefs.getString('jobs');
       List<dynamic> jobs = jobsString != null ? json.decode(jobsString) : [];
 
-      //! Add the new job
       jobs.add(jobData);
 
-      //! Save updated job list
       await prefs.setString('jobs', json.encode(jobs));
 
-      //! Clear the text fields
       _titleController.clear();
       _descriptionController.clear();
       _companyController.clear();
-      _locationController.clear();
+      setState(() {
+        dropdownValueForm = citys.first; // Reset dropdown value
+      });
 
       if (mounted) {
         showSuccessNotification(context, 'Job posted successfully!');
@@ -80,6 +77,7 @@ class _AddJobScreenState extends State<AddJobScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownMenuForm(
+                    selectedValue: dropdownValueForm,
                     onSelected: (String value) {
                       setState(() {
                         dropdownValueForm = value;
