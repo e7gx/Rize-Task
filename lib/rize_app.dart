@@ -32,7 +32,7 @@ class RizeApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.onboardingScreen,
+        initialRoute: Routes.splashScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );
