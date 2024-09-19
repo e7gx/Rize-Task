@@ -270,20 +270,26 @@ class _MainPageState extends State<AiChatPage> {
                 child: Divider(height: 4.h),
               ),
               Container(
-                decoration: BoxDecoration(color: Theme.of(context).cardColor),
+                decoration: const BoxDecoration(color: Colors.white),
                 child: Row(
                   children: <Widget>[
                     Expanded(
                       child: TextField(
+                        cursorColor: ColorsManager.mainBlue,
                         style: TextStyle(
                           color: ColorsManager.mainBlue,
                           fontSize: 16.sp,
                         ),
                         controller: _textEditingController,
                         decoration: InputDecoration(
+                          fillColor: Colors.white,
                           contentPadding: EdgeInsets.symmetric(
-                              horizontal: 8.w, vertical: 10.h),
+                              horizontal: 15.w, vertical: 10.h),
                           hintText: "Say Hi $_firstName ...",
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 14.sp,
+                          ),
                           border: InputBorder.none,
                         ),
                         inputFormatters: [

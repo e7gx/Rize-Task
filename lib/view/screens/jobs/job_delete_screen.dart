@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:readmore/readmore.dart';
 import 'package:rize/controller/helpers/alerts/snackbar.dart';
 import 'package:rize/controller/helpers/jobs/job_uilts.dart';
@@ -7,6 +8,7 @@ import 'package:rize/controller/theme/colors.dart';
 import 'package:rize/controller/theme/styles.dart';
 import 'package:rize/model/jobs_model.dart';
 import 'package:intl/intl.dart';
+import 'package:rize/view/screens/jobs/widgets/jobs_card.dart';
 
 class JobDeleteScreen extends StatefulWidget {
   const JobDeleteScreen({super.key});
@@ -131,11 +133,15 @@ class _JobDeleteScreenState extends State<JobDeleteScreen> {
                           }
                         },
                         style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all(Colors.red),
+                          padding: WidgetStateProperty.all(EdgeInsets.symmetric(
+                            vertical: 16.h,
+                          )),
+                          backgroundColor:
+                              WidgetStateProperty.all(ColorsManager.redAccent),
                           minimumSize: WidgetStateProperty.all(
                               Size(double.infinity, 52.h)),
                           shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16.r),
+                            borderRadius: BorderRadius.circular(16),
                           )),
                         ),
                         child: Text('Delete Job',
@@ -162,7 +168,7 @@ class _JobDeleteScreenState extends State<JobDeleteScreen> {
       _jobs.removeAt(index);
     });
     await saveJobs(
-        _jobs); // Use the helper function to save the updated job list
+        _jobs); // Using the helper function to save the updated job list
     setState(() {});
   }
 
@@ -170,17 +176,42 @@ class _JobDeleteScreenState extends State<JobDeleteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _isLoading
-          ? const Center(
-              child: CircularProgressIndicator(),
+          ? SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.asset(
+                      'assets/animation/Search.json',
+                      width: 300.w,
+                      height: 300.h,
+                    ),
+                    SizedBox(height: 20.h),
+                    Text(
+                      'Loading jobs...',
+                      style: TextStyles.font28BlueBold,
+                    ),
+                  ],
+                ),
+              ),
             )
           : _jobs.isEmpty
               ? Center(
-                  child: Text(
-                    'No jobs available for deletion',
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[600],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Lottie.asset(
+                          'assets/animation/WOR.json',
+                          width: 300.w,
+                          height: 300.h,
+                        ),
+                        SizedBox(height: 10.h),
+                        Text(
+                          'No jobs available',
+                          style: TextStyles.font28BlueBold,
+                        ),
+                      ],
                     ),
                   ),
                 )
@@ -188,33 +219,14 @@ class _JobDeleteScreenState extends State<JobDeleteScreen> {
                   padding: EdgeInsets.all(16.w),
                   itemCount: _jobs.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      margin: EdgeInsets.only(bottom: 16.h),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 4,
-                      child: ListTile(
-                        contentPadding: EdgeInsets.all(16.w),
-                        title: Text(
-                          _jobs[index].title,
-                          style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        subtitle: Text(
-                          _jobs[index].company,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        onTap: () {
-                          _showJobDetailsBottomSheet(
-                              context, _jobs[index], index);
-                        },
-                      ),
+                    final job = _jobs[index];
+                    return CardFb2(
+                      text: job.title,
+                      subtitle: job.company,
+                      imageUrl: 'sdsds',
+                      onPressed: () {
+                        _showJobDetailsBottomSheet(context, job, index);
+                      },
                     );
                   },
                 ),

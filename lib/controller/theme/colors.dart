@@ -8,4 +8,5 @@ class ColorsManager {
   static const Color blueGray = Color(0xFF5A647D); // Blue Gray
   static const Color gray = Color(0xFF6C757D); // Default Gray
   static const Color white = Color(0xFFFFFFFF); // Default White
+  static const Color redAccent = Color(0xFFFF5252); // Red Accent
 }

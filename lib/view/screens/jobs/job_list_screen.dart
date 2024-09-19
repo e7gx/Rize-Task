@@ -61,8 +61,8 @@ class _JobListScreenState extends State<JobListScreen> {
               ),
             )
           : _jobs.isEmpty
-              ? SingleChildScrollView(
-                  child: Center(
+              ? Center(
+                child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +80,7 @@ class _JobListScreenState extends State<JobListScreen> {
                       ],
                     ),
                   ),
-                )
+              )
               : RefreshIndicator(
                   backgroundColor: ColorsManager.mainBlue,
                   color: Colors.white,
@@ -104,3 +104,4 @@ class _JobListScreenState extends State<JobListScreen> {
     );
   }
 }
+

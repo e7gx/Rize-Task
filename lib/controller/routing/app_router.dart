@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:rize/controller/routing/routes.dart';
 import 'package:rize/view/screens/jobs/add_job_screen.dart';
