@@ -11,7 +11,7 @@ class RizeImageAndText extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Image.asset(
-          'assets/images/logo.png',
+          'assets/images/image.png',
           width: 1000.w,
           height: 500.h,
           color: Colors.white.withOpacity(0.5),
