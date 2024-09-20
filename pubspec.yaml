@@ -50,6 +50,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.10+1
   readmore: ^3.0.0
+  dots_indicator: ^2.1.2
 
 
 dev_dependencies:

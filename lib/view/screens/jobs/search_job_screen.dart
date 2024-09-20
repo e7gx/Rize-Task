@@ -6,11 +6,13 @@ import 'package:rize/controller/helpers/alerts/snackbar.dart';
 import 'package:rize/controller/helpers/extentions.dart';
 import 'package:rize/controller/theme/colors.dart';
 import 'package:rize/controller/theme/styles.dart';
+import 'package:rize/view/screens/jobs/widgets/ads_card.dart';
 import 'package:rize/view/screens/jobs/widgets/custom_jobs_card.dart';
 import 'package:rize/view/screens/jobs/widgets/search_for_job.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class SearchJobScreen extends StatefulWidget {
   const SearchJobScreen({super.key});
@@ -20,6 +22,7 @@ class SearchJobScreen extends StatefulWidget {
 }
 
 class SearchJobScreenState extends State<SearchJobScreen> {
+  final _pageController = PageController();
   List<Map<String, dynamic>> _jobs = [];
   List<Map<String, dynamic>> _filteredJobs = [];
   final TextEditingController _searchController = TextEditingController();
@@ -70,50 +73,79 @@ class SearchJobScreenState extends State<SearchJobScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SearchInput(
-            textController: _searchController,
-            hintText: 'Type to search for jobs...',
-          ),
-          Expanded(
-            child: _filteredJobs.isEmpty
-                ? Center(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Lottie.asset(
-                            'assets/animation/x.json',
-                            width: 300.w,
-                            height: 300.h,
-                          ),
-                          SizedBox(height: 20.h),
-                          Text(
-                            'No jobs by this name',
-                            style: TextStyles.font28BlueBold,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                : ListView.builder(
-                    itemCount: _filteredJobs.length,
-                    itemBuilder: (context, index) {
-                      final job = _filteredJobs[index];
-                      return CardFb2(
-                        text: job['title'],
-                        subtitle: job['company'],
-                        imageUrl: 'sdsds',
-                        onPressed: () {
-                          _showJobDetailsBottomSheet(context, job);
-                        },
-                      );
-                    },
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 200,
+                  child: PageView.builder(
+                    controller: _pageController,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => card2(),
+                    itemCount: 3,
                   ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              SmoothPageIndicator(
+                controller: _pageController,
+                count: 3,
+                effect: const SwapEffect(
+                  dotHeight: 10,
+                  radius: 30,
+                  dotColor: Colors.grey,
+                  activeDotColor: ColorsManager.mainBlue,
+                  spacing: 10,
+                ),
+              ),
+              SearchInput(
+                textController: _searchController,
+                hintText: 'Type to search for jobs...',
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: _filteredJobs.isEmpty
+                    ? Center(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Lottie.asset(
+                                'assets/animation/x.json',
+                                width: 300.w,
+                                height: 300.h,
+                              ),
+                              SizedBox(height: 20.h),
+                              Text(
+                                'No jobs by this name',
+                                style: TextStyles.font28BlueBold,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: _filteredJobs.length,
+                        itemBuilder: (context, index) {
+                          final job = _filteredJobs[index];
+                          return CardFb2(
+                            text: job['title'],
+                            subtitle: job['company'],
+                            imageUrl: 'sdsds',
+                            onPressed: () {
+                              _showJobDetailsBottomSheet(context, job);
+                            },
+                          );
+                        },
+                      ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
