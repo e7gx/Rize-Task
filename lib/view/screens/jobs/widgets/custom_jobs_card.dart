@@ -22,7 +22,6 @@ class CardFb2 extends StatelessWidget {
         onTap: onPressed,
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 100.h,
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -65,15 +64,13 @@ class CardFb2 extends StatelessWidget {
                       onPressed();
                     },
                   ),
-                  Expanded(
-                    child: Text(
-                      subtitle,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12),
-                    ),
+                  Text(
+                    subtitle,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12),
                   ),
                 ],
               ),
