@@ -35,31 +35,47 @@ class CardFb2 extends StatelessWidget {
                   color: Colors.grey.withOpacity(.05)),
             ],
           ),
-          child: Row(
+          child: Column(
             children: [
-              Image.asset(
-                'assets/images/job.png',
-                height: 59.h,
-                fit: BoxFit.cover,
-              ),
-              SizedBox(
-                width: 15.w,
-              ),
-              Text(text,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  )),
-              const Spacer(),
-              Text(
-                subtitle,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 12),
+              Row(
+                children: [
+                  Image.asset(
+                    'assets/images/job.png',
+                    height: 59.h,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(
+                    width: 15.w,
+                  ),
+                  Expanded(
+                    child: Text(
+                      text,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const Spacer(),
+                  ExpandIcon(
+                    onPressed: (bool value) {
+                      onPressed();
+                    },
+                  ),
+                  Expanded(
+                    child: Text(
+                      subtitle,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
