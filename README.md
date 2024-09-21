@@ -1,10 +1,12 @@
 # Rize-Task
 
-## Project Overview
+## Project Overview 📝
 
 This repository contains the code for the Rize Mobile Engineer Intern Task, a Flutter-based mobile application designed to manage job postings. The task is aimed at assessing Flutter development skills through the creation of a simplified Jobs Page app.
 
-## Features
+[Click here to see App Video](https://firebasestorage.googleapis.com/v0/b/pythoncli-e6c14.appspot.com/o/RPReplay_Final1726887607.mov?alt=media&token=60b48c5a-ab90-45b9-9138-9b05eebef9dc)
+
+## Features 🚀
 
 The application includes the following features:
 
@@ -14,20 +16,20 @@ The application includes the following features:
 - **Job Details Modal**: Users can view detailed information about a job post in a modal.
 - **Search by Title**: Users can search for job posts by title.
 
-## Additional Features
+## Additional Features 👍🏻
 
 - **Scroll-Based Loading (Simplified Pagination)**: The app loads more jobs as the user scrolls to the bottom.
 - **Responsive Design**: The app is optimized for both portrait and landscape orientations.
 - **State Management**: State management is handled using `setState()` or any preferred state management solution.
 
-## Technical Specifications
+## Technical Specifications 💻
 
 - **Platform**: Flutter
 - **Language**: Dart
 - **Data Storage**: Mock data (no backend required)
 - **State Management**: `setState()` or any preferred state management solution
 
-## Getting Started
+## Getting Started 🚀
 
 To run this project locally, follow these steps:
 
