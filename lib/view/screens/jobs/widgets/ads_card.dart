@@ -74,11 +74,11 @@ Widget card2() => Padding(
                         ),
                       ),
                       child: const Text(
-                        'عرض وظائف الشهر',
+                        'Apply Now !',
                         style: TextStyle(
                           fontFamily: 'Cairo',
                           color: ColorsManager.darkBlue,
-                          fontSize: 12,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
