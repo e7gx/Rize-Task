@@ -4,7 +4,7 @@
 
 This repository contains the code for the Rize Mobile Engineer Intern Task, a Flutter-based mobile application designed to manage job postings. The task is aimed at assessing Flutter development skills through the creation of a simplified Jobs Page app.
 
-[Click here to see App Video](https://firebasestorage.googleapis.com/v0/b/pythoncli-e6c14.appspot.com/o/RPReplay_Final1726887607.mov?alt=media&token=60b48c5a-ab90-45b9-9138-9b05eebef9dc)
+[Click here to see App Video](https://firebasestorage.googleapis.com/v0/b/pythoncli-e6c14.appspot.com/o/RPReplay_Final1726891486.MP4?alt=media&token=78ed3fb9-3a1d-48d4-be45-0db74234c90d)
 
 ## Features 🚀
 
