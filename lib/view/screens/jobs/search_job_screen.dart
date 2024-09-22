@@ -135,6 +135,7 @@ class SearchJobScreenState extends State<SearchJobScreen> {
                           return CardFb2(
                             text: job['title'],
                             subtitle: job['company'],
+                            thirdText: job['location'],
                             imageUrl: 'sdsds',
                             onPressed: () {
                               _showJobDetailsBottomSheet(context, job);

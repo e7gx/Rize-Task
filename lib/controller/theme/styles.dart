@@ -87,4 +87,9 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: ColorsManager.blueGray,
   );
+  static TextStyle font12Whitebold = const TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+    color: ColorsManager.white,
+  );
 }

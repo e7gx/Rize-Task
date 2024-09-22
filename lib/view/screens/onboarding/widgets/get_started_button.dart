@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rize/controller/helpers/extentions.dart';
-import 'package:rize/controller/routing/routes.dart';
+// import 'package:rize/controller/helpers/extentions.dart';
+// import 'package:rize/controller/routing/routes.dart';
 import 'package:rize/controller/theme/colors.dart';
 import 'package:rize/controller/theme/styles.dart';
+import 'package:rize/view/screens/jobs/home.dart';
 
 class GetStartedButton extends StatelessWidget {
   const GetStartedButton({super.key});
@@ -11,7 +12,13 @@ class GetStartedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        context.pushReplacementNamed(Routes.homeScreen);
+        // context.pushReplacementNamed(Routes.homeScreen);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
       },
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all(ColorsManager.mainBlue),

@@ -225,6 +225,7 @@ class _JobDeleteScreenState extends State<JobDeleteScreen> {
                     return CardFb2(
                       text: job.title,
                       subtitle: job.company,
+                      thirdText: job.location,
                       imageUrl: 'sdsds',
                       onPressed: () {
                         _showJobDetailsBottomSheet(context, job, index);
